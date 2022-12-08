@@ -1,0 +1,87 @@
+%********************************************************************
+%           On a lemma of Lojasiewicz
+%********************************************************************
+\documentclass[a4paper,10pt]{article}
+%********************************************************************
+%            Packages
+%********************************************************************
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[intlimits]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{IEEEtrantools}
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{cite}
+\newcommand{\dm}{\mathrm{d}}
+\newcommand{\Bsy}[1]{\ensuremath{{\boldsymbol{#1}}}}
+\newcommand{\St}{\mathbb{St}}
+\newtheorem{cor}{Corollary}
+\newtheorem{defn}{Definition}
+\newtheorem{lemma}{Lemma}
+%\newtheorem{stackrel}
+\newtheorem{theo}{Theorem}
+\usepackage{hyperref}
+%********************************************************************
+%            Content
+%********************************************************************
+
+\title{On a lemma of Łojasiewicz}
+
+\author{Daniele Tampieri}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  The purpose of this short note is to make better known and slightly extend a lemma used by Stanisław Łojasiewicz in his proof of the standard Fatou-Riesz theorem.
+\end{abstract}
+\section{Basic definitions}
+Let's start by giving some definitions and notations.
+\begin{defn} Let $A,B\subset \Bbb C$ two subsets in the complex plane: their \emph{(Euclidean) distance} $\rho:\mathscr{P}(\Bbb C)\times\mathscr{P}(\Bbb C)\to\Bbb R_{>0}$ is defined as
+  \begin{equation*}\label{eq:dist}
+    \rho(A,B)=\inf_{z_1\in A \wedge z_2\in B}|z_1-z_2|
+  \end{equation*}
+\end{defn}
+In the sequel we will consider exclusively the distance between a point $z$ in the interior of a domain $G$ and the boundary $\partial G$ of that domain: therefore we simplify the notation by putting $\rho(z,\partial G)\triangleq \rho(z)$.
+\begin{defn} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary. A non tangential approach region along the direction
+  \begin{equation}\label{eq:appreg}
+    \Gamma\St
+  \end{equation}
+\end{defn}
+The preceeding definition is inspired by the one given in {\rm\cite[§1.1, p.~8]{DiBiase1998}}.
+
+\section{The fundamental lemma}
+
+\begin{lemma}\label{lemma:main} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its non tangential limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
+
+$$
+\left(z-\zeta_0\right) \cdot g^{\prime}(z) \underset{z \to \zeta_0}{\longrightarrow} 0
+$$
+in such a way that the quotient $\left|\zeta_0-z\right| / \rho(z)$ remains bounded.
+\end{lemma}
+\proof Let  $s=\lim _{z \to\zeta_0} g(z)$, $C_z=\big\{\zeta \in \mathbb{C}|| \zeta-z \mid=\frac{\rho(z)}{2}\big\}$ and $\eta(z)=\max _{{C}_z}|g(z)-s|$. For all $z \in G$,
+$$
+g^{\prime}(z)=\frac{1}{2 \pi i} \int_{C_z} \frac{g(\zeta)}{(\zeta-z)^2} \operatorname{d}\!\zeta=\frac{1}{2 \pi i} \int_{C_z}\frac{g(\zeta)-s}{(\zeta-z)^2} \operatorname{d}\! \zeta \text {, }
+$$
+thus it follows that
+$$
+\left|g^{\prime}(z)\right| \leqslant \frac{1}{2 \pi} \pi \rho(z) \frac{\eta(z)}{\left(\frac{1}{2} \rho(z)\right)^2}=2 \frac{\eta(z)}{\rho(z)}
+$$
+and consequently
+$$
+\left|\left(z-\zeta_0\right) \cdot g^{\prime}(z)\right| \leqslant 2 \frac{\left|z-\zeta_0\right|}{\rho(z)} \eta(z)
+$$
+which implies the thesis since $\eta(z) \to 0$ per $z \to \zeta_0$. \qed
+
+
+\begin{cor}{\rm\cite[lemme II, p.~242]{Lojasiewicz1950}} Assumming the same hypotheses of lemma~\ref{lemma:main}
+\end{cor}
+
+\section{Final notes and observations}
+
+\bibliographystyle{plain}
+\bibliography{2022-12-05_Lojasiewicz}
+\end{document}
