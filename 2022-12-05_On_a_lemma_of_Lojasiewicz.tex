@@ -46,23 +46,31 @@ Let's start by giving some definitions and notations.
   \end{equation*}
 \end{defn}
 In the sequel we will consider exclusively the distance between a point $z$ in the interior of a domain $G$ and the boundary $\partial G$ of that domain: therefore we simplify the notation by putting $\rho(z,\partial G)\triangleq \rho(z)$.
-\begin{defn} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary. A non tangential approach region along the direction
-  \begin{equation}\label{eq:appreg}
-    \Gamma\St
-  \end{equation}
+\begin{defn} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary. A $\varepsilon$-\emph{Stolz region} with vertex $\zeta_0$ directed along the direction $\theta\in[0,2\pi]$, is a closed subset of the closure of $G$ such that with the following structure
+\begin{equation}\label{eq:appreg}
+  \St_\theta^\varepsilon\big(\zeta_0,M\big) = \left\{ z\in\Bbb D(z_0,R): {|\zeta_b-z|}\le M{\big| 1-|z-\zeta_0+e^{i\theta}|\big|}\right\},
+\end{equation}
+where $M>1$ e $z_b\in\partial\Bbb D(z_o,R)$ è un punto della circonferenza. Anche in questo caso, la notazione
+verrà progressivamente semplificata se $z_0=0$ poi $R=1$ e infine se $z_b=1$:
+\begin{IEEEeqnarray}{rCl}
+  \St\big(z_b,M,\Bbb D(0,R) \big) & = & \left\{ z\in\Bbb D(R): {|\zeta_0-z|}\le M{| R-|z||}\right\} \triangleq \St\big(z_b, M, \Bbb D(R) \big) \nonumber\\
+  \St\big(z_b,M, \Bbb D(1)\big) & = & \left\{ z\in\Bbb D: {|z_b-z|}\le M{| R -|z||}\right\} \triangleq \St(z_b,M)\nonumber\\
+    \St(1,M) & = & \left\{ z\in\Bbb D: {|1-z|}\le M{|1 - |z||}\right\} \triangleq \St(M).\nonumber
+\end{IEEEeqnarray}
 \end{defn}
-The preceeding definition is inspired by the one given in {\rm\cite[§1.1, p.~8]{DiBiase1998}}.
-
+The preceeding definition is inspired by the one given in {\rm\cite[§1.1, p.~8]{DiBiase1998}}, as it is the following one.
+\begin{defn}\label{def:ntlim}
+\end{defn}
 \section{The fundamental lemma}
+The following lemma was proved by Stanisław Łojasiewicz in what is perhaps his first published paper.
 
-\begin{lemma}\label{lemma:main} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its non tangential limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
-
+\begin{lemma}{\rm\cite[lemme II, p.~242]{Lojasiewicz1950}}\label{lemma:Loj} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
 $$
 \left(z-\zeta_0\right) \cdot g^{\prime}(z) \underset{z \to \zeta_0}{\longrightarrow} 0
 $$
 in such a way that the quotient $\left|\zeta_0-z\right| / \rho(z)$ remains bounded.
 \end{lemma}
-\proof Let  $s=\lim _{z \to\zeta_0} g(z)$, $C_z=\big\{\zeta \in \mathbb{C}|| \zeta-z \mid=\frac{\rho(z)}{2}\big\}$ and $\eta(z)=\max _{{C}_z}|g(z)-s|$. For all $z \in G$,
+\proof Let  $s=\lim _{z \to\zeta_0} g(z)$, $C_z=\big\{\zeta \in \mathbb{C}: | \zeta-z \mid=\frac{\rho(z)}{2}\big\}$ and $\eta(z)=\max _{{C}_z}|g(z)-s|$. For all $z \in G$,
 $$
 g^{\prime}(z)=\frac{1}{2 \pi i} \int_{C_z} \frac{g(\zeta)}{(\zeta-z)^2} \operatorname{d}\!\zeta=\frac{1}{2 \pi i} \int_{C_z}\frac{g(\zeta)-s}{(\zeta-z)^2} \operatorname{d}\! \zeta \text {, }
 $$
@@ -74,13 +82,37 @@ and consequently
 $$
 \left|\left(z-\zeta_0\right) \cdot g^{\prime}(z)\right| \leqslant 2 \frac{\left|z-\zeta_0\right|}{\rho(z)} \eta(z)
 $$
-which implies the thesis since $\eta(z) \to 0$ per $z \to \zeta_0$. \qed
+which implies the thesis since $\eta(z) \to 0$ for $z \to \zeta_0$. \qed
 
+The following lemma requires only the exitence a of non tangential limit of the involved  function $g(z)$ as $z$ moves toward the boundary point $\zeta_0$
 
-\begin{cor}{\rm\cite[lemme II, p.~242]{Lojasiewicz1950}} Assumming the same hypotheses of lemma~\ref{lemma:main}
-\end{cor}
+\begin{lemma}\label{lemma:main} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its non tangential limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
+
+$$
+\left(z-\zeta_0\right) \cdot g^{\prime}(z) \underset{z \to \zeta_0}{\longrightarrow} 0
+$$
+in such a way that the quotient $\left|\zeta_0-z\right| / \rho(z)$ remains bounded.
+\end{lemma}
+\proof Let  $s=\lim _{z \to\zeta_0} g(z)$, $C_z=\big\{\zeta \in \mathbb{C} :| \zeta-z \mid=\frac{\rho(z)}{2}\big\}$ and $\eta(z)=\max _{{C}_z}|g(z)-s|$. For all $z \in G$,
+$$
+g^{\prime}(z)=\frac{1}{2 \pi i} \int_{C_z} \frac{g(\zeta)}{(\zeta-z)^2} \operatorname{d}\!\zeta=\frac{1}{2 \pi i} \int_{C_z}\frac{g(\zeta)-s}{(\zeta-z)^2} \operatorname{d}\! \zeta \text {, }
+$$
+thus it follows that
+$$
+\left|g^{\prime}(z)\right| \leqslant \frac{1}{2 \pi} \pi \rho(z) \frac{\eta(z)}{\left(\frac{1}{2} \rho(z)\right)^2}=2 \frac{\eta(z)}{\rho(z)}
+$$
+and consequently
+$$
+\left|\left(z-\zeta_0\right) \cdot g^{\prime}(z)\right| \leqslant 2 \frac{\left|z-\zeta_0\right|}{\rho(z)} \eta(z)
+$$
+which implies the thesis since $\eta(z) \to 0$ for $z \to \zeta_0$. \qed
 
 \section{Final notes and observations}
+In this section I list some notes about the two lemmas proved above,
+\begin{itemize}
+\item Despite the fact that non tangential limit is a weaker concept than limit, the second lemma above cannot be said to be a generalization, since the the boundary point $\zeta_0$ can be choosen as the vertex of a cusp. Then lemma~\ref{lemma:main} is not applicable as in this case there is not an appoach region with vertex in $\zeta_0$ fully containded in the interior of $G$, while lemma~\ref{lemma:Loj} is perfectly applicable.
+\item This lemma clarifies a doubt that I expressed in a MathOverflow question~\cite{396814}. The assumption on the growth of the function that seemed too specific and somewhat artificial to me, now appears quite natural in the light of Łojasiewicz's lemma~\ref{lemma:Loj}. Giovanni Ricci~(see the references cited in~\cite{396814}) seems simply chosing an explicit instance of a general behavior in order to show how to approach the general case by using his method.
+\end{itemize}
 
 \bibliographystyle{plain}
 \bibliography{2022-12-05_Lojasiewicz}
