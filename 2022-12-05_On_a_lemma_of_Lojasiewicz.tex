@@ -1,4 +1,4 @@
-%********************************************************************
+ %********************************************************************
 %           On a lemma of Lojasiewicz
 %********************************************************************
 \documentclass[a4paper,10pt]{article}
@@ -13,21 +13,22 @@
 \usepackage{amsthm}
 \usepackage{IEEEtrantools}
 \usepackage{mathrsfs}
+\usepackage{mathtools}
 \usepackage{stix}
 \usepackage{cite}
-\newcommand{\dm}{\mathrm{d}}
+\usepackage{romannum}
+\newcommand{\dm}{\operatorname{d\!}}
 \newcommand{\Bsy}[1]{\ensuremath{{\boldsymbol{#1}}}}
 \newcommand{\St}{\mathbb{St}}
 \newtheorem{cor}{Corollary}
 \newtheorem{defn}{Definition}
 \newtheorem{lemma}{Lemma}
-%\newtheorem{stackrel}
+\newtheorem{obs}{Observation}
 \newtheorem{theo}{Theorem}
 \usepackage{hyperref}
 %********************************************************************
 %            Content
 %********************************************************************
-
 \title{On a lemma of Łojasiewicz}
 
 \author{Daniele Tampieri}
@@ -35,35 +36,78 @@
 
 \begin{document}
 \maketitle
+\pagenumbering{arabic}
 \begin{abstract}
-  The purpose of this short note is to make better known and slightly extend a lemma used by Stanisław Łojasiewicz in his proof of the standard Fatou-Riesz theorem.
+  The purpose of this short note is to make better known (and prove a slightly extended version of) a lemma on the boudary behavior of analytic functions. This lemma seems to have been proved for the first time by Stanisław Łojasiewicz in his paper (possibly the very first) \cite{Lojasiewicz1950} on the standard Fatou-Riesz theorem.
 \end{abstract}
 \section{Basic definitions}
-Let's start by giving some definitions and notations.
-\begin{defn} Let $A,B\subset \Bbb C$ two subsets in the complex plane: their \emph{(Euclidean) distance} $\rho:\mathscr{P}(\Bbb C)\times\mathscr{P}(\Bbb C)\to\Bbb R_{>0}$ is defined as
+\begin{defn} Let $A,B\subset \Bbb C$ two subsets in the complex plane: their \emph{(Euclidean) distance} $\rho:\mathscr{P}(\Bbb C)\times\mathscr{P}(\Bbb C)\to\Bbb R_{\ge0}$ is defined as
   \begin{equation*}\label{eq:dist}
     \rho(A,B)=\inf_{z_1\in A \wedge z_2\in B}|z_1-z_2|
   \end{equation*}
 \end{defn}
-In the sequel we will consider exclusively the distance between a point $z$ in the interior of a domain $G$ and the boundary $\partial G$ of that domain: therefore we simplify the notation by putting $\rho(z,\partial G)\triangleq \rho(z)$.
-\begin{defn} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary. A $\varepsilon$-\emph{Stolz region} with vertex $\zeta_0$ directed along the direction $\theta\in[0,2\pi]$, is a closed subset of the closure of $G$ such that with the following structure
-\begin{equation}\label{eq:appreg}
-  \St_\theta^\varepsilon\big(\zeta_0,M\big) = \left\{ z\in\Bbb D(z_0,R): {|\zeta_b-z|}\le M{\big| 1-|z-\zeta_0+e^{i\theta}|\big|}\right\},
-\end{equation}
-where $M>1$ e $z_b\in\partial\Bbb D(z_o,R)$ è un punto della circonferenza. Anche in questo caso, la notazione
-verrà progressivamente semplificata se $z_0=0$ poi $R=1$ e infine se $z_b=1$:
-\begin{IEEEeqnarray}{rCl}
-  \St\big(z_b,M,\Bbb D(0,R) \big) & = & \left\{ z\in\Bbb D(R): {|\zeta_0-z|}\le M{| R-|z||}\right\} \triangleq \St\big(z_b, M, \Bbb D(R) \big) \nonumber\\
-  \St\big(z_b,M, \Bbb D(1)\big) & = & \left\{ z\in\Bbb D: {|z_b-z|}\le M{| R -|z||}\right\} \triangleq \St(z_b,M)\nonumber\\
-    \St(1,M) & = & \left\{ z\in\Bbb D: {|1-z|}\le M{|1 - |z||}\right\} \triangleq \St(M).\nonumber
-\end{IEEEeqnarray}
+In the sequel we will deal only with the distance between a point $z$ inside a domain $G$ and its boundary $\partial G$ or the distance between two points $z_1, z_2\in G$: thus, by abuse of notation, we respectively write $\rho(\{z\},\partial G)\triangleq \rho_{\partial G}(z)$ and $\rho(\{z_1\},\{z_2\})\triangleq \rho(z_1,z_2)$.
+\begin{defn}\label{def:appreg} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $M>1$, $0< \varepsilon \le 1$ and $\theta\in[0,2\pi]$ three real numbers. A $\theta$-\emph{directed $(\varepsilon,M)$-conical approach region with vertex $\zeta_0$} is a set $C_{\theta}^{\varepsilon}(\zeta_0,M)\subset\Bbb C$ defined as
+  \begin{equation}
+    \begin{split}
+      C_{\theta}^{\varepsilon}(\zeta_0,M)=\bigg\{ z\in \Bbb C  : &\; \big(|z -\zeta_0|<\varepsilon\big) \\
+      & \land\Big(-\arccos\tfrac{1}{M}\le\arg (\zeta_0- z) -\theta \le + \arccos\tfrac{1}{M}\Big)\bigg\}
+    \end{split}
+  \end{equation}
+  such that its closure is included in the closure of $G$, i.e. $\overline{C_{\theta}^{\varepsilon}(\zeta_0,M)}\subset\overline{G}$.
 \end{defn}
-The preceeding definition is inspired by the one given in {\rm\cite[§1.1, p.~8]{DiBiase1998}}, as it is the following one.
-\begin{defn}\label{def:ntlim}
+The following definition is inspired by the analysis of the Abel--Stolz lemma in Knopp {\rm\cite[§54, pp.~406--407]{Knopp1951}} (see also the original work by Stolz and Gmeiner \cite[§\Romannum{4}.15, pp.~287--288]{StolzGmeiner1905}).
+\begin{defn}\label{def:locst} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $M>1$, $0< \varepsilon \le 1$ and $\theta\in[0,2\pi]$ three real numbers. A $\theta$-\emph{directed $(\varepsilon,M)$-Stolz region} with vertex $\zeta_0$, is a closed subset of the closure of $G$ defined as
+  \begin{equation}\label{eq:appreg}
+    \begin{split}
+      \St_\theta^\varepsilon\big(\zeta_0,M\big) = \bigg\{ z\in \Bbb C  : &\; {\left(\big| 2(z - \zeta_0) + {\varepsilon}{ e^{i\theta}}\big|\le \varepsilon \right)} \\
+      & \land \left[{|\zeta_0-z|}\le M{\left({\varepsilon}/{2} - \left|z - \zeta_0 + {\varepsilon}\tfrac{ e^{i\theta}}{2}\right|\right)}\right]\bigg\},
+    \end{split}
+  \end{equation}
+  where $M>1$.
 \end{defn}
+\begin{obs} Below we prove two properties involving $\theta$-directed $(\varepsilon,M)$-conical approach and Stolz regions with the same vertex $\zeta_0$ that will be useful in the sequel.
+  \item $\overline{ \St_\theta^\varepsilon\big(\zeta_0,M\big)}\subsetneq\overline{ C_{\theta}^{\varepsilon}(\zeta_0,M)}$ and both regions are compactly contained in $\overline{G}$.  To see this, first note that $z\in\St_\theta^\varepsilon\big(\zeta_0,M\big)$ implies 
+    \[
+      \big| 2(z - \zeta_0) + {\varepsilon}{ e^{i\theta}}\big|\le \varepsilon \iff \big| (z - \zeta_0) + \frac{\varepsilon}{2}{ e^{i\theta}}\big|\le \frac{\varepsilon}{2}
+    \]
+    and thus
+    \[
+      \frac{\varepsilon}{2} \ge \big| (z - \zeta_0) + \frac{\varepsilon}{2}{ e^{i\theta}}\big|\ge | z - \zeta_0 | - \frac{\varepsilon}{2} \iff |z -\zeta_0|\le \varepsilon
+    \]
+    Moreover $z\in\St_\theta^\varepsilon\big(\zeta_0,M\big)$ also implies that
+    \[
+      \begin{split}
+        {|\zeta_0-z|} & \le M{\left({\varepsilon}/{2} - \left|z - \zeta_0 + {\varepsilon}\tfrac{ e^{i\theta}}{2}\right|\right)} \\
+        & \iff \frac{|\zeta_0-z|}{{\varepsilon}/{2} - \left|z - \zeta_0 + {\varepsilon}\tfrac{ e^{i\theta}}{2}\right|}\le M\\
+        & \iff \frac{\frac{2}{\varepsilon}|\zeta_0-z|}{1 - \left|1 - \frac{2}{\varepsilon}(\zeta_0-z)e^{-i\theta}\right|}\le M
+      \end{split}
+    \]
+    and by putting $\arg(\zeta- z)-\theta\triangleq\varphi$ and $\frac{2}{\varepsilon}|\zeta_0-z|\triangleq \rho$ we get
+    \[
+      \begin{split}
+        {|\zeta_0-z|}&\le M{\left({\varepsilon}/{2} - \left|z - \zeta_0 + {\varepsilon}\tfrac{ e^{i\theta}}{2}\right|\right)} \\
+        & \iff \frac{\rho}{1 - \sqrt{1-2\rho\cos\varphi +\rho^2}}\le M\\
+        & \iff \frac{\rho}{M}\le {1 - \sqrt{1-2\rho\cos\varphi +\rho^2}} \\
+        & \iff \left(1 - \frac{\rho}{M} \right) \le 1-2\rho\cos\varphi +\rho^2\\
+        & \iff \cos\varphi \ge \frac{1}{M} + \frac{\rho}{2} \left(1 -\frac{1}{M^2}\right) \ge \frac{1}{M}
+      \end{split}
+    \]
+  \item The limiting arguments for $\zeta_0 - z$ as: in a less formal manner, the two regions are tangent at the vertex $\zeta_0$.  
+\end{obs}
+
+The following definitions are inspired by the one given in {\rm\cite[§1.1, p.~8]{DiBiase1998}}.
+\begin{defn}\label{def:ntlim} Let $f: G\to \Bbb C$ be a holomorphic function and $\zeta_0\in\partial G$ a point on the boundary of its domain of definition: $f$ is said to have a \emph{non-tangential limit} as $z\to\zeta_0$ if and only if there exists a conical approach region $C_{\theta}^{\varepsilon}(\zeta_0,M)$ such that $\lim_{t\to 1}f(\gamma(t))=s$ along all continuous curves $\gamma: [0,1]\to\Bbb C$ such that
+  \begin{equation*}
+    \begin{cases}
+      \gamma(1)=\zeta_0, \\
+      \gamma([0,1])\subseteq C_{\theta}^{\varepsilon}(\zeta_0,M).
+    \end{cases}
+  \end{equation*}
+\end{defn}
+
 \section{The fundamental lemma}
 The following lemma was proved by Stanisław Łojasiewicz in what is perhaps his first published paper.
-
 \begin{lemma}{\rm\cite[lemme II, p.~242]{Lojasiewicz1950}}\label{lemma:Loj} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
 $$
 \left(z-\zeta_0\right) \cdot g^{\prime}(z) \underset{z \to \zeta_0}{\longrightarrow} 0
@@ -84,7 +128,7 @@ $$
 $$
 which implies the thesis since $\eta(z) \to 0$ for $z \to \zeta_0$. \qed
 
-The following lemma requires only the exitence a of non tangential limit of the involved  function $g(z)$ as $z$ moves toward the boundary point $\zeta_0$
+The following lemma is a generalization of the previous one, in that it requires only the existence a of non tangential limit as $z$ tends toward the boundary point $\zeta_0$ of the function $g(z)$ 
 
 \begin{lemma}\label{lemma:main} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $g(z)$ a holomorphic function on $G$ such that its non tangential limit for $z \to\zeta_0$ exists and finally let $\rho(z)$ be the distance between $z$ and $\partial G$: then
 
