@@ -1,4 +1,4 @@
- %********************************************************************
+%********************************************************************
 %           On a lemma of Lojasiewicz
 %********************************************************************
 \documentclass[a4paper,10pt]{article}
@@ -25,6 +25,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{obs}{Remark}
 \newtheorem{theo}{Theorem}
+\usepackage[tablegrid]{vhistory}
 \usepackage{hyperref}
 %********************************************************************
 %            Content
@@ -32,13 +33,13 @@
 \title{On a lemma of Łojasiewicz}
 
 \author{Daniele Tampieri}
-\date{}
+\date{Version \vhCurrentVersion}
 
 \begin{document}
 \maketitle
 \pagenumbering{arabic}
 \begin{abstract}
-  The purpose of this short note is to make better known (and prove a slightly extended version of) a lemma on the boudary behavior of analytic functions. This lemma seems to have been proved for the first time by Stanisław Łojasiewicz in his paper (possibly the very first published one) \cite{Lojasiewicz1950} on the standard Fatou-Riesz theorem.
+  The purpose of this short note is to make better known (and prove a slightly extended version of) a lemma on the boundary behavior of analytic functions. This lemma seems to have been proved for the first time by Stanisław Łojasiewicz in his paper (possibly the very first published one) \cite{Lojasiewicz1950} on the standard Fatou-Riesz theorem.
 \end{abstract}
 \section{Basic notions}
 \begin{defn} Let $A,B\subset \Bbb C$ two subsets in the complex plane: their \emph{(Euclidean) distance} $\rho:\mathscr{P}(\Bbb C)\times\mathscr{P}(\Bbb C)\to\Bbb R_{\ge0}$ is defined as
@@ -54,7 +55,7 @@ In the sequel we will deal only with distances between a point $z$ inside a doma
       & \land\Big(-\arccos\tfrac{1}{M}\le\arg (\zeta_0- z) -\theta \le + \arccos\tfrac{1}{M}\Big)\bigg\}
     \end{split}
   \end{equation}
-  such that its closure is included in the closure of $G$, i.e. $\overline{\Gamma_{\theta}^{\varepsilon}(\zeta_0,M)}\subset\overline{G}$.
+  such that its closure is included in the closure of $G$, i.e. $\overline{\Gamma_{\theta}^{\varepsilon}(\zeta_0,M)}\subset\overline{G}$. The point $\zeta_0$ is the \emph{vertex} of the conical region while $\varepsilon$, $\theta$ and $M$ are respectively its \emph{magnitude}, \emph{direction} and \emph{aperture}. When the vertex and the aperture are clearly and unambiguously inferred from the context or are not relevant for the discourse, the notation for the conical region will be safely abridged as $\Gamma_{\theta}^{\varepsilon}$.
 \end{defn}
 % The following definition is inspired by the presentation of the Abel--Stolz lemma found in Knopp {\rm\cite[§54, pp.~406--407]{Knopp1951}} (see also the original presentation by Stolz and Gmeiner \cite[§\Romannum{4}.15, pp.~287--288]{StolzGmeiner1905}).
 % \begin{defn}\label{def:locst} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $M>1$, $0< \varepsilon \le 1$ and $\theta\in[0,2\pi]$ three real numbers. A $\theta$-\emph{directed $(\varepsilon,M)$-Stolz region} with vertex $\zeta_0$, is a closed subset of the closure of $G$ defined as
@@ -145,7 +146,7 @@ $$
 $$
 which implies the thesis since $\eta(z) \to 0$ for $z \to \zeta_0$. \qed
 
-The following lemma is a generalization of the previous one, in that it requires only the existence a of non tangential limit as $z$ tends toward the boundary point $\zeta_0$ of the function $f(z)$. Nevertheless, its proof is basically the same of lemma~\ref{lemma:Loj}: a careful choice definition of the objects involved (in particular the approach region for $f$ instead of its whole domain and its non tangential limit instead of ``simple'' limit) avoids the introduction of further technicalities and moreover enlights the deep meaning of the lemma. 
+The following lemma is a generalization of the previous one, in that it requires only the existence a of non tangential limit as $z$ tends toward the boundary point $\zeta_0$ of the function $f(z)$. Its proof is formally the same given by Łojasiewicz: a careful choice of the objects involved (in particular the approach region for $f$ instead of its whole domain and its nontangential limit instead of ``simple'' limit) avoids the introduction of further technicalities and moreover enlights the meaning of the lemma.
 
 \begin{lemma}\label{lemma:main} Let $G\in\Bbb C$ be a domain, $\zeta_0 \in\partial G$ a point on its boundary, $f(z)$ a holomorphic function on $G$ such that its non tangential limit for $z \to\zeta_0$ exists and finally let $\rho_{\partial \Gamma_{\theta}^{\varepsilon}}(z)$ be the distance of $z$ from the boundary $\partial \Gamma_{\theta}^{\varepsilon}\big(\zeta_0,M\big)$ of the conical approach region for $f$: then
 
@@ -170,10 +171,15 @@ which implies the thesis since $\eta(z) \to 0$ for $z \to \zeta_0$. \qed
 
 \section{Final notes and observations}
 \begin{itemize}
-\item Lemma~\ref{lemma:main} generalizes lemma~\ref{lemma:Loj} as it only requires the existence of a non tangential limit, a  weaker requirement than the existence of a ``\emph{tout court}'' limit: moreover, the former sheds light on a intrinsic characteristic of the boundary behavior of holomophic functions $f$ having a finite limit at a boundary point which is only implicitly addressed by the latter. To see this, let's analyze first what happens if $\zeta_0$ is the vertex of an outward cusp: lemma~\ref{lemma:Loj} is not applicable as in this case the quotient $\left|\zeta_0-z\right| / \rho_{\partial G}(z)$ necessarily grows unbounded as $z\to\zeta_0$ and likewise lemma~\ref{lemma:main} is clearly not, as in this case it does not exists any conical appoach region with vertex in $\zeta_0$ fully containded in the interior of $G$. On the other hand, even when $\zeta_0$ lies on a smooth part of the boundary $G$, \emph{lemma~\ref{lemma:main} is explicitly not applicable even in this case if $s=\lim_{z \to\zeta_0} f(z)$ exists only in radial sense} (meaning that it exists only anlong a single rectilinear path to $\zeta_0$): in this case it is the quotient  $\left|\zeta_0-z\right| / \rho_{\partial \Gamma_{\theta}^{\varepsilon}}(z)$ which grows unbounded in perfectly analogous way. We can thus conclude that lemma~\ref{lemma:main} explicitly implies that \emph{the finiteness of the limit at a boundary point of a function $f$ can be used to estimate the growth of its first derivative there only if the limit is not radial and the point is not the vertex of a cusp}.
+\item Lemma~\ref{lemma:main} generalizes lemma~\ref{lemma:Loj} since it only requires the existence of a non tangential limit, a considerably weaker requirement than the existence of a ``\emph{tout court}'' limit. Moreover, the former lemma sheds light on a intrinsic characteristic of the boundary behavior of holomophic functions $f$ with a finite limit at a boundary point which is only implicitly addressed by the latter. To see this, let's analyze first what happens if $\zeta_0$ is the vertex of an outward cusp: lemma~\ref{lemma:Loj} is not applicable as in this case the quotient $\left|\zeta_0-z\right| / \rho_{\partial G}(z)$ necessarily grows unbounded for $z\to\zeta_0$ and likewise lemma~\ref{lemma:main} is clearly not, as in this case it does not exists any conical approach region with vertex in $\zeta_0$ fully contained in the interior of $G$. On the other hand, even when $\zeta_0$ lies on a smooth part of the boundary $G$, \emph{lemma~\ref{lemma:main} is explicitly not applicable even in this case if $s=\lim_{z \to\zeta_0} f(z)$ exists only in radial sense} (meaning that it exists only along a single rectilinear path to $\zeta_0$): in this case it is the quotient  $\left|\zeta_0-z\right| / \rho_{\partial \Gamma_{\theta}^{\varepsilon}}(z)$ which grows unbounded in perfectly analogous way. We can thus conclude that lemma~\ref{lemma:main} explicitly implies that \emph{the existence of limit at a boundary point for a function $f$ can be used to estimate the growth of its first derivative whenever the limit is not radial and the boundary point is not the vertex of a cusp}.
 \item This lemma clarifies a doubt that I expressed in a MathOverflow question~\cite{Tampieri2021}. The assumption on the growth of the function I questioned there and that seemed too specific and somewhat artificial to me, now appears quite natural in the light of Łojasiewicz's lemma~\ref{lemma:Loj}. In his work Giovanni Ricci~(see the references cited in~\cite{Tampieri2021}) seems simply to choose an explicit instance of a general behavior in order to show how to approach the general case by using his method.
 \end{itemize}
 
 \bibliographystyle{aomplain}
 \bibliography{2022-12-05_Lojasiewicz}
+\begin{versionhistory}
+  \vhEntry{1.0}{05.12.2022}{Daniele Tampieri}{Creation}
+  \vhEntry{1.1}{19.05.2023}{Daniele Tampieri}{First published version}
+%  \vhEntry{1.2}{03.02.04}{DP|JPW}{revised after review}
+\end{versionhistory}
 \end{document}
